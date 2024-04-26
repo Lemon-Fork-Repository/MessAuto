@@ -1,5 +1,6 @@
 mod float_window;
 mod tray_icon;
+mod webhook;
 
 pub const ARGS_APP: &str = "app";
 rust_i18n::i18n!("locales");

@@ -439,37 +439,41 @@ pub fn messages_thread() {
             if now_metadata != last_metadata_modified {
                 last_metadata_modified = now_metadata;
                 let stdout = get_message_in_one_minute();
-                let captcha_or_other = check_captcha_or_other(&stdout, &flags);
-                if captcha_or_other {
-                    info!("{}", t!("new-verification-code-detected"));
-
-                    let captchas = get_captchas(&stdout);
-                    info!("{}:{:?}", t!("all-possible-codes"), captchas);
-                    let real_captcha = get_real_captcha(&stdout);
-                    info!("{}:{:?}", t!("real-verification-code"), real_captcha);
-                    let mut ctx = Clipboard::new().unwrap();
-                    let old_clipboard_contents = get_old_clipboard_contents();
-
-                    let config = read_config();
-                    if config.float_window {
-                        let _child = open_app(real_captcha, t!("imessage").to_string());
-                    } else if config.auto_paste && !config.float_window {
-                        ctx.set_text(&real_captcha).unwrap();
-                        paste_script().unwrap();
-                        info!("{}", t!("paste-verification-code"));
-                        if config.auto_return {
-                            return_script().unwrap();
-                            info!("{}", t!("press-enter"));
-                        }
-                        if config.recover_clipboard {
-                            recover_clipboard_contents(old_clipboard_contents);
-                        }
-                    }
-                }
+                display_verify(&stdout, &flags);
             }
             sleep(Duration::from_secs(5));
         }
     });
+}
+
+pub fn display_verify(message: &str, flags: &Vec<String>) {
+    let captcha_or_other = check_captcha_or_other(message, flags);
+    if captcha_or_other {
+        info!("{}", t!("new-verification-code-detected"));
+
+        let captchas = get_captchas(message);
+        info!("{}:{:?}", t!("all-possible-codes"), captchas);
+        let real_captcha = get_real_captcha(message);
+        info!("{}:{:?}", t!("real-verification-code"), real_captcha);
+        let mut ctx = Clipboard::new().unwrap();
+        let old_clipboard_contents = get_old_clipboard_contents();
+
+        let config = read_config();
+        if config.float_window {
+            let _child = open_app(real_captcha, t!("imessage").to_string());
+        } else if config.auto_paste && !config.float_window {
+            ctx.set_text(&real_captcha).unwrap();
+            paste_script().unwrap();
+            info!("{}", t!("paste-verification-code"));
+            if config.auto_return {
+                return_script().unwrap();
+                info!("{}", t!("press-enter"));
+            }
+            if config.recover_clipboard {
+                recover_clipboard_contents(old_clipboard_contents);
+            }
+        }
+    }
 }
 
 pub fn get_current_exe_path() -> PathBuf {

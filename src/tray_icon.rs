@@ -1,5 +1,7 @@
+use crossbeam_channel::bounded;
 use std::fs::File;
 use std::process::Command;
+use std::thread;
 
 use log::{info, trace, warn};
 use native_dialog::MessageDialog;
@@ -12,8 +14,10 @@ use tao::{
     event_loop::{ControlFlow, EventLoopBuilder},
     platform::macos::EventLoopExtMacOS,
 };
+use tray_icon::menu::MenuItem;
 use tray_icon::{menu::MenuEvent, TrayIconEvent};
 
+use crate::webhook;
 use MessAuto::{
     auto_launch, check_accessibility, check_accessibility_with_no_action, check_full_disk_access,
     config_path, get_sys_locale, log_path, mail_thread, messages_thread, read_config, TrayIcon,
@@ -60,6 +64,11 @@ pub fn main() {
     if config.listening_to_mail {
         mail_thread();
     }
+    let (tx, rx) = bounded::<String>(1);
+    thread::spawn(move || {
+        webhook::run(tx);
+    });
+    let addr = rx.recv().unwrap();
 
     // 禁用自动更新
     // let (tx, rx) = mpsc::channel();
@@ -67,6 +76,7 @@ pub fn main() {
 
     let tray_menu_items = TrayMenuItems::build(&config);
     let tray_menu = TrayMenu::build(&tray_menu_items);
+    let _ = tray_menu.append(&MenuItem::new(addr, false, None));
     let mut tray_icon = TrayIcon::build(tray_menu);
     tray_icon.as_mut().unwrap().set_icon_as_template(true);
 
