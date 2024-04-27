@@ -1030,7 +1030,8 @@ dependencies = [
 [[package]]
 name = "const-field-offset"
 version = "0.1.5"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "91fcde4ca1211b5a94b573083c472ee19e86b19a441913f66e1cc5c41daf0255"
 dependencies = [
  "const-field-offset-macro",
  "field-offset",
@@ -1039,7 +1040,8 @@ dependencies = [
 [[package]]
 name = "const-field-offset-macro"
 version = "0.1.5"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5387f5bbc9e9e6c96436ea125afa12614cebf8ac67f49abc08c1e7a891466c90"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2436,14 +2438,15 @@ dependencies = [
 [[package]]
 name = "i-slint-backend-linuxkms"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cbbdc2601a48abb02020b02f0a1710127a83b08b9578bbf8682b5de47108603a"
 dependencies = [
  "calloop",
  "drm",
  "gbm",
  "gbm-sys",
  "glutin",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core",
  "i-slint-renderer-femtovg",
  "input",
@@ -2455,12 +2458,13 @@ dependencies = [
 [[package]]
 name = "i-slint-backend-qt"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "440b1b7d2ce6df962ca02eac5295cf9b8fc6855803adee0f22f2c88b80b5b334"
 dependencies = [
  "const-field-offset",
  "cpp",
  "cpp_build",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core",
  "i-slint-core-macros",
  "lyon_path",
@@ -2474,20 +2478,22 @@ dependencies = [
 [[package]]
 name = "i-slint-backend-selector"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "02392c204ebb8f39bc9c941c1ec1e154842cbe1af72d4678851680f178dbc0e5"
 dependencies = [
  "cfg-if",
  "i-slint-backend-linuxkms",
  "i-slint-backend-qt",
  "i-slint-backend-winit",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core",
 ]
 
 [[package]]
 name = "i-slint-backend-winit"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "78c5148183e47249b3f36962046f934c0c8149d5103f2adde8bf27e8f4bf0afb"
 dependencies = [
  "accesskit",
  "accesskit_winit",
@@ -2500,7 +2506,7 @@ dependencies = [
  "derive_more",
  "glutin",
  "glutin-winit",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core",
  "i-slint-core-macros",
  "i-slint-renderer-femtovg",
@@ -2532,17 +2538,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "i-slint-common"
-version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
-dependencies = [
- "cfg-if",
- "derive_more",
- "fontdb",
- "libloading 0.8.3",
-]
-
-[[package]]
 name = "i-slint-compiler"
 version = "1.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2554,7 +2549,7 @@ dependencies = [
  "css-color-parser2",
  "derive_more",
  "fontdue",
- "i-slint-common 1.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "i-slint-common",
  "image 0.24.9",
  "itertools 0.12.1",
  "linked_hash_set",
@@ -2573,35 +2568,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "i-slint-compiler"
-version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
-dependencies = [
- "by_address",
- "codemap",
- "codemap-diagnostic",
- "css-color-parser2",
- "derive_more",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
- "itertools 0.12.1",
- "linked_hash_set",
- "lyon_extra",
- "lyon_path",
- "num_enum 0.7.2",
- "once_cell",
- "proc-macro2",
- "quote",
- "rowan",
- "smol_str",
- "strum",
- "thiserror",
- "url",
-]
-
-[[package]]
 name = "i-slint-core"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e99a56d9e95158fcbfd9f8d64e0cf874406e30942f4b32e546427657b3261d6a"
 dependencies = [
  "auto_enums",
  "bytemuck",
@@ -2611,7 +2581,7 @@ dependencies = [
  "derive_more",
  "euclid",
  "fontdue",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core-macros",
  "image 0.24.9",
  "integer-sqrt",
@@ -2644,7 +2614,8 @@ dependencies = [
 [[package]]
 name = "i-slint-core-macros"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "903d476370e036f8d1560d4aed21ba366e9d83f02c1b27d9621aa1eaf99669b5"
 dependencies = [
  "quote",
  "syn 2.0.52",
@@ -2653,7 +2624,8 @@ dependencies = [
 [[package]]
 name = "i-slint-renderer-femtovg"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "299a4003b20a50aad4a2cb384fddfae1ad2a965ce48bd2f6501803588fdd0e5e"
 dependencies = [
  "cfg-if",
  "const-field-offset",
@@ -2663,7 +2635,7 @@ dependencies = [
  "dwrote",
  "femtovg",
  "glow",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core",
  "i-slint-core-macros",
  "imgref",
@@ -2684,7 +2656,8 @@ dependencies = [
 [[package]]
 name = "i-slint-renderer-skia"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e3c3f4f4b8b54f40bb396261c2f64cf4c9072b12dff7e87cf49bb90b7200a3b"
 dependencies = [
  "bytemuck",
  "cfg-if",
@@ -2697,7 +2670,7 @@ dependencies = [
  "foreign-types 0.5.0",
  "glow",
  "glutin",
- "i-slint-common 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-common",
  "i-slint-core",
  "i-slint-core-macros",
  "lyon_path",
@@ -4771,7 +4744,8 @@ dependencies = [
 [[package]]
 name = "slint"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6d22f20ddb26d3b410b406e8b1dc298ff87af3e9007fb464ac9c7a970762c85a"
 dependencies = [
  "const-field-offset",
  "i-slint-backend-qt",
@@ -4791,7 +4765,7 @@ version = "1.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bdaa6b72e5db5c791615a18e2bdfc622f1a17226f54b2ac5a170a2381c25c3df"
 dependencies = [
- "i-slint-compiler 1.5.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "i-slint-compiler",
  "spin_on",
  "thiserror",
  "toml_edit 0.22.7",
@@ -4800,9 +4774,10 @@ dependencies = [
 [[package]]
 name = "slint-macros"
 version = "1.5.1"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "506dfe65ec1575c2d0a4f3eec7702bd24a72caa387c977408508ab9a7633c4c1"
 dependencies = [
- "i-slint-compiler 1.5.1 (git+https://github.com/LeeeSe/slint.git?tag=v1.5.2)",
+ "i-slint-compiler",
  "proc-macro2",
  "quote",
  "spin_on",
@@ -5572,7 +5547,8 @@ dependencies = [
 [[package]]
 name = "vtable"
 version = "0.2.0"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "379cd4a9d99f35bcf1687282268b94b59f14b098cba210632605f39709230963"
 dependencies = [
  "const-field-offset",
  "portable-atomic",
@@ -5583,7 +5559,8 @@ dependencies = [
 [[package]]
 name = "vtable-macro"
 version = "0.2.0"
-source = "git+https://github.com/LeeeSe/slint.git?tag=v1.5.2#eafce001599c65b8725558f3f0019895839870d8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68c1b85ec843d3bc60e9d65fa7e00ce6549416a25c267b5ea93e6c81e3aa66e5"
 dependencies = [
  "proc-macro2",
  "quote",

@@ -8,6 +8,7 @@ use rust_i18n::t;
 use simplelog::{
     ColorChoice, CombinedLogger, ConfigBuilder, LevelFilter, TermLogger, TerminalMode, WriteLogger,
 };
+
 use MessAuto::{
     get_old_clipboard_contents, get_sys_locale, log_path, paste_script, read_config,
     recover_clipboard_contents, return_script,
@@ -70,15 +71,18 @@ pub fn main(code: &str, from_app: &str) -> Result<(), slint::PlatformError> {
     ui.set_paste_code_instruction(paste_code_instruction.to_string().into());
     ui.set_verification_code_label(verification_code_label.to_string().into());
 
-    let position = Mouse::get_mouse_position();
-    let mut mouse_pos = (0, 0);
-    match position {
-        Mouse::Position { x, y } => mouse_pos = (x, y),
-        Mouse::Error => error!("error-getting-mouse-position"),
-    }
+    let mouse_pos = match Mouse::get_mouse_position() {
+        Mouse::Position { x, y } => (x, y),
+        Mouse::Error => {
+            error!("error-getting-mouse-position");
+            (0, 0)
+        }
+    };
 
-    ui.window()
-        .set_position(slint::LogicalPosition::new(mouse_pos.0 as f32, mouse_pos.1 as f32));
+    ui.window().set_position(slint::LogicalPosition::new(
+        mouse_pos.0 as f32,
+        mouse_pos.1 as f32,
+    ));
 
     let ui_handle = ui.as_weak();
     let config = read_config();
@@ -101,6 +105,7 @@ pub fn main(code: &str, from_app: &str) -> Result<(), slint::PlatformError> {
             recover_clipboard_contents(old_clpb_contents);
         }
         ui.hide().unwrap();
+        let _ = slint::quit_event_loop();
     });
 
     ui.run()

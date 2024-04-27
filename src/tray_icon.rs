@@ -4,7 +4,7 @@ use std::process::Command;
 use std::thread;
 
 use log::{info, trace, warn};
-use native_dialog::MessageDialog;
+
 use rust_i18n::t;
 use simplelog::{
     ColorChoice, CombinedLogger, ConfigBuilder, LevelFilter, TermLogger, TerminalMode, WriteLogger,
