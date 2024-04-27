@@ -78,7 +78,7 @@ pub fn main(code: &str, from_app: &str) -> Result<(), slint::PlatformError> {
     }
 
     ui.window()
-        .set_position(slint::PhysicalPosition::new(mouse_pos.0, mouse_pos.1));
+        .set_position(slint::LogicalPosition::new(mouse_pos.0 as f32, mouse_pos.1 as f32));
 
     let ui_handle = ui.as_weak();
     let config = read_config();
